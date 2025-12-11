@@ -106,7 +106,7 @@ let cellData = "";//for storing iterized cell data. It will keep track of commas
 
 for(i=0; i<str.length; i++) {
   //Saving value current char at the current index into a variable to make easier to use.
-  let current = str[i]; //instead of writing str[i] all the time. So, variable current will sift through each cell's data.
+  const current = str[i]; //instead of writing str[i] all the time. So, variable current will sift through each cell's data.
 
   if (current === ",") {//when current or str[i] reaches a comma, it iterates to the next cell
     // Move to the next cell
@@ -129,53 +129,40 @@ for(i=0; i<str.length; i++) {
     }
   }
 
- 
-    console.log(`${rows}`);
-  
-  
-  }
+  //splice const rows so that header(categories) are renoved
+
+  const headers = rows.splice(0,4);
+
+// Display the parsed result
+console.log("All rows:", rows);
+console.log("Categories:", headers);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*for(let i=0; i<csv.length; i++){
-    const chars = csv[i]; //data moves to a new cell when it reaches a comma
     
-    if (chars === ","){// comma signifies the end of the cell
-        currentRow.push(currentCells);
-        currentCells ="";
-    }else if (chars === "\n") { /* "\n" signifies the end of a row*/
-     /*currentRow.push(currentCells);
-     finalRows.push(currentRow);
-     currentRow = [];
-     currentCells ="";   
-    }else {
-        currentCells += chars;
-    }
-}
+  }
+  
 
-console.log(finalRows);*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
