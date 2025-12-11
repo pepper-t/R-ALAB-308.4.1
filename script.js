@@ -96,9 +96,9 @@ for (let i = 0; i < csv.length; i++) {
 const str = `ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor's Assistant,26`;
 
 //Arrays for storing new data
-
-rowData=[]; //for creating the rows with the cellData.
-cellData = "";//for storing iterized cell data. It will keep track of commas and "/n" as it goes through the string.
+const rows =[]; //for the parsed row data - final destination
+let rowData=[]; //for creating the rows with the cellData.
+let cellData = "";//for storing iterized cell data. It will keep track of commas and "/n" as it goes through the string.
 
 
 // Loop through each character in the CSV string
@@ -108,25 +108,31 @@ for(i=0; i<str.length; i++) {
   //Saving value current char at the current index into a variable to make easier to use.
   let current = str[i]; //instead of writing str[i] all the time. So, variable current will sift through each cell's data.
 
-  if (current == ",") {//when current or str[i] reaches a comma, it iterates to the next cell
+  if (current === ",") {//when current or str[i] reaches a comma, it iterates to the next cell
     // Move to the next cell
   rowData.push(cellData); //iteration past commas
   cellData="";
-  rowData=[];
-  } else if (current == "\n") {//iteration past the end of the row, which is indicated by "\n".
+  
    
-    cellData="";
-    rowData=[];
-  } else { cellData+=current;
+} else if (current === "\n") {//iteration past the end of the row, which is indicated by "\n".
+   rowData.push(cellData);
+        rows.push(rowData);
+        rowData = [];
+        cellData = "";
+  } else {cellData+=current;
     // For all other chars
     // Add data to a cell
+
     if (cellData.length>0) { // If there is 0 data then this is the end of the loop
       rowData.push(cellData);
+    rows.push(rowData);
     }
   }
 
  
-    console.log(cellData);
+    console.log(`${rows}`);
+  
+  
   }
 
 
