@@ -93,62 +93,42 @@ for (let i = 0; i < csv.length; i++) {
 // // print individual cells
 
 // Starting string - input
-const csv = `ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor's Assistant,26`;
+const str = `ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor's Assistant,26`;
 
 //Arrays for storing new data
 
-
-cellData = [];
-
-
-// Variables - to store data in empty cells
-let cell1 = "";
-let cell2 = "";
-let cell3 = "";
-let cell4 = "";
-// Keeps track of commas / cells
-let commas = 0;
+rowData=[]; //for creating the rows with the cellData.
+cellData = "";//for storing iterized cell data. It will keep track of commas and "/n" as it goes through the string.
 
 
 // Loop through each character in the CSV string
 
 
-for(i=0; i<csv.length; i++) {
+for(i=0; i<str.length; i++) {
   //Saving value current char at the current index into a variable to make easier to use.
-  let current = csv.forEach; //instead of writing csv.forEach all the time
+  let current = str[i]; //instead of writing str[i] all the time. So, variable current will sift through each cell's data.
 
-  if (current == ",") {//when current or csv.forEach reach comma move over to next cell
+  if (current == ",") {//when current or str[i] reaches a comma, it iterates to the next cell
     // Move to the next cell
-    commas++; //iteration of commas
-  } else if (current == "\n") {
-    console.log(cell1, cell2, cell3, cell4);//printing cells for that line once reach the end. "\n" indicates end of the line.
-    // Print all cells & reset cell/comma values for next line below
-    commas = 0;
-    cell1 = "";
-    cell2 = "";
-    cell3 = "";
-    cell4 = "";
-  } else {
+  rowData.push(cellData); //iteration past commas
+  cellData="";
+  rowData=[];
+  } else if (current == "\n") {//iteration past the end of the row, which is indicated by "\n".
+   
+    cellData="";
+    rowData=[];
+  } else { cellData+=current;
     // For all other chars
     // Add data to a cell
-    if (commas == 0) {
-        // If 0 commas add current char first cell
-      cell1 += current;
-    } else if (commas == 1) {
-      cell2 += current;
-    } else if (commas == 2) {
-      cell3 += current;
-    } else {
-      cell4 += current;
+    if (cellData.length>0) { // If there is 0 data then this is the end of the loop
+      rowData.push(cellData);
     }
   }
 
-  //Check if its the last index of loop.
-  if (i == csv.length - 1) {
-    //if so, print last row
-    console.log(cell1, cell2, cell3, cell4);
+ 
+    console.log(cellData);
   }
-}
+
 
 
 
